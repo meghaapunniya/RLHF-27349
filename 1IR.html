@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Size Converter Widget</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .widget {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+        }
+        .widget-header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .widget-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .widget-content {
+            padding: 20px;
+        }
+        .size-chart {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .size-chart th, .size-chart td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .size-chart th {
+            background-color: #f2f2f2;
+        }
+        .shopping-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .shopping-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .tab-content h3{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget">
+        <div class="widget-header">
+            <h2>Shoe Size Converter</h2>
+        </div>
+        <div class="widget-content">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="conversion-tab" data-bs-toggle="tab" data-bs-target="#conversion" type="button" role="tab" aria-controls="conversion" aria-selected="true">Size Conversion</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts" type="button" role="tab" aria-controls="charts" aria-selected="false">Size Charts</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="fit-tab" data-bs-toggle="tab" data-bs-target="#fit" type="button" role="tab" aria-controls="fit" aria-selected="false">Fit Suggestions</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="shopping-tab" data-bs-toggle="tab" data-bs-target="#shopping" type="button" role="tab" aria-controls="shopping" aria-selected="false">Shopping</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="conversion" role="tabpanel" aria-labelledby="conversion-tab">
+                    <h3>Size Conversion</h3>
+                    <form id="conversion-form">
+                        <div class="mb-3">
+                            <label for="shoe-size" class="form-label">Enter your shoe size:</label>
+                            <input type="number" class="form-control" id="shoe-size" step="0.5" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="current-region" class="form-label">Current region:</label>
+                            <select class="form-select" id="current-region" required>
+                                <option value="US">US</option>
+                                <option value="EU">EU</option>
+                                <option value="UK">UK</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="target-region" class="form-label">Target region:</label>
+                            <select class="form-select" id="target-region" required>
+                                <option value="US">US</option>
+                                <option value="EU">EU</option>
+                                <option value="UK">UK</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender:</label>
+                            <select class="form-select" id="gender" required>
+                                <option value="men">Men's</option>
+                                <option value="women">Women's</option>
+                                <option value="children">Children's</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="width" class="form-label">Width:</label>
+                            <select class="form-select" id="width">
+                                <option value="regular">Regular</option>
+                                <option value="narrow">Narrow</option>
+                                <option value="wide">Wide</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Convert</button>
+                    </form>
+                    <div id="conversion-result" class="mt-3"></div>
+                </div>
+                <div class="tab-pane fade" id="charts" role="tabpanel" aria-labelledby="charts-tab">
+                    <h3>Size Charts</h3>
+                    <table class="size-chart">
+                        <thead>
+                            <tr>
+                                <th>US</th>
+                                <th>EU</th>
+                                <th>UK</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>6</td><td>39</td><td>5.5</td></tr>
+                            <tr><td>7</td><td>40</td><td>6.5</td></tr>
+                            <tr><td>8</td><td>41</td><td>7.5</td></tr>
+                            <tr><td>9</td><td>42</td><td>8.5</td></tr>
+                            <tr><td>10</td><td>43</td><td>9.5</td></tr>
+                            <tr><td>11</td><td>44</td><td>10.5</td></tr>
+                            <tr><td>12</td><td>45</td><td>11.5</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="fit" role="tabpanel" aria-labelledby="fit-tab">
+                    <h3>Fit Suggestions</h3>
+                    <ul>
+                        <li>Measure your feet in the afternoon, as feet tend to swell during the day.</li>
+                        <li>Make sure to measure both feet, as one foot might be slightly larger than the other.</li>
+                        <li>When trying on shoes, wear the type of socks you plan to wear with the shoes.</li>
+                        <li>Leave about a thumb's width of space between your longest toe and the end of the shoe.</li>
+                        <li>Walk around in the shoes to ensure they're comfortable and provide proper support.</li>
+                    </ul>
+                    <h4>Regional Differences</h4>
+                    <p>Keep in mind that sizes may vary slightly between brands and regions. When in doubt, it's best to refer to the brand's specific size chart or measure your feet in centimeters/inches for more accurate sizing.</p>
+                </div>
+                <div class="tab-pane fade" id="shopping" role="tabpanel" aria-labelledby="shopping-tab">
+                    <h3>Shop for Shoes</h3>
+                    <div class="shopping-card">
+                        <img src="https://m.media-amazon.com/images/I/811meQOcCEL._SX695_.jpg" alt="Shoe 1">
+                        <div>
+                            <h5>Running Shoes</h5>
+                            <p>₹ 390</p>
+                            <a href="https://amzn.in/d/6lEyPwJ" target="_blank" class="btn btn-sm btn-primary">Buy on Amazon</a>
+                        </div>
+                    </div>
+                    <div class="shopping-card">
+                        <img src="https://rukminim2.flixcart.com/image/416/416/xif0q/shoe/o/j/w/8-oogiy-42-aeonik-green-original-imagxggbb4y78z9g.jpeg?q=70&crop=true" alt="Shoe 2">
+                        <div>
+                            <h5>Casual Sneakers</h5>
+                            <p>₹ 547</p>
+                            <a href="http://dl.flipkart.com/dl/aeonik-ogiy-retro-shoes-high-premium-quality-sneakers-men/p/itm4889fbc93f5da?pid=SHOGXGGBND2EBT3P&cmpid=product.share.pp&lid=LSTSHOGXGGBND2EBT3PTZ0DZM" target="_blank" class="btn btn-sm btn-primary">Buy on Flipkart</a>
+                        </div>
+                    </div>
+                    <div class="shopping-card">
+                        <img src="https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/27527014/2024/2/12/d1d9d7aa-f847-4363-b4e8-5f970effc0f11707714563049HERENOWMenFormalShoes1.jpg" alt="Shoe 3">
+                        <div>
+                            <h5>Formal Shoes</h5>
+                            <p>₹ 747</p>
+                            <a href="https://www.myntra.com/formal-shoes/here%26now/herenow-men-formal-slip-on-shoes/27527014/buy" target="_blank" class="btn btn-sm btn-primary">Buy on Myntra</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        function convertShoeSize(size, currentRegion, targetRegion, gender) {
+            const conversionChart = {
+                men: {
+                    US: [6, 7, 8, 9, 10, 11, 12],
+                    EU: [39, 40, 41, 42, 43, 44, 45],
+                    UK: [5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5]
+                },
+                women: {
+                    US: [4, 5, 6, 7, 8, 9, 10],
+                    EU: [35, 36, 37, 38, 39, 40, 41],
+                    UK: [2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5]
+                },
+                children: {
+                    US: [1, 2, 3, 4, 5, 6],
+                    EU: [32, 33, 34, 35, 36, 37],
+                    UK: [13.5, 1.5, 2.5, 3.5, 4.5, 5.5]
+                }
+            };
+
+            const sizeIndex = conversionChart[gender][currentRegion].indexOf(parseFloat(size));
+
+            if (sizeIndex !== -1) {
+                const convertedSize = conversionChart[gender][targetRegion][sizeIndex];
+                return convertedSize;
+            } else {
+                return "Size not found in the conversion chart.";
+            }
+        }
+
+        document.getElementById('conversion-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const size = document.getElementById('shoe-size').value;
+            const currentRegion = document.getElementById('current-region').value;
+            const targetRegion = document.getElementById('target-region').value;
+            const gender = document.getElementById('gender').value;
+            const convertedSize = convertShoeSize(size, currentRegion, targetRegion, gender);
+            document.getElementById('conversion-result').textContent = `Converted size: ${convertedSize}`;
+        });
+    </script>
+</body>
+</html>
